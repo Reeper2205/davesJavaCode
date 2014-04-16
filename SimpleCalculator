@@ -1,0 +1,121 @@
+import java.util.Scanner;
+
+public class Calculator {
+	
+	public static void main(String[] args) {
+
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("Welcome to The Calculator \nPlease type 'quit' to exit");
+		
+		int working = 1;// declaring working here so can finish the while loop
+						// when certain command is triggered
+
+		while (working == 1) {// using a while loop so the program will
+								// constantly run until its told not to
+
+			try {// using try and catch to find inputs the computer dosn't
+					// understand
+				System.out.println("Please enter a sum");
+				String x = sc.nextLine();
+
+				if (x.equals("quit")) {
+					System.out.println("Shutting Down");
+					working = 0; // stopping program			
+				} else if (x.equals("boobs")) {
+					System.out.println("This is a calculator not a search engine");
+				} else if (x.equals("hello")) {
+					System.out.println("Hi There");
+				} else if (x.equals("this sucks")) {
+					System.out.println("do you want a smack?"); // These prints
+				}												// are for the
+																// fun of the
+																// user
+				
+
+				char P = '+'; // these are declaring the operators so the				
+				char M = '*'; // indexOf method can find it and send the
+				char S = '-'; // correct message
+				char D = '/';
+
+				int pluss = x.indexOf(P); // Finding the operator and assigning						
+				int multi = x.indexOf(M); // a value to it, this will tell the
+				int subt = x.indexOf(S); // program which method to use
+				int dive = x.indexOf(D);
+				/*
+				 * Previously i used a boolean statement to break up the code so
+				 * i could identify which part of the code was not working i did
+				 * this by separating the plus !=-1 statement so i could tell
+				 * where i needed to focus my attention When all areas were in
+				 * working order, I made the code shorter and less complicated
+				 */
+				if (pluss != -1) { 
+					String[] piece = x.split("\\+"); 
+					int a = Integer.valueOf(piece[0].trim());
+					int b = Integer.valueOf(piece[1].trim());
+					System.out.println(add(a, b));			
+					
+					/* pluss was given a value from indexOf, if
+					* its not -1 then it will do this statement
+					* i am splitting the string on the
+					* operator because i no longer need it, and
+					* this will give me the
+					* 2 remaining values on either side into an array
+					* this will take the first number then trim the
+					* empty space on either side then find the
+					* numbers value I used trim here because
+				    * it worked better here because when its in the
+				 	*array it will trim on both sides when i
+					* tried used trim earlier in the program it
+					* would not get rid of all the space
+					* this access's the method that matches the operator
+					* in this case adding
+					*/
+					
+				} else if (multi != -1) {
+					String[] piece = x.split("\\*");
+					int a = Integer.valueOf(piece[0].trim());
+					int b = Integer.valueOf(piece[1].trim());
+					System.out.println(multiply(a, b));
+				} else if (subt != -1) {
+					String[] piece = x.split("\\-");
+					int a = Integer.valueOf(piece[0].trim());
+					int b = Integer.valueOf(piece[1].trim());
+					System.out.println(subtract(a, b));
+				} else if (dive != -1) {
+					String[] piece = x.split("\\/");
+					int a = Integer.valueOf(piece[0].trim());
+					int b = Integer.valueOf(piece[1].trim());
+					System.out.println(divide(a, b));
+				}
+			}
+
+			catch (Exception e) {
+				System.out.println("Dont be Silly");// catch here is to stop
+													// people typing in words
+													// and trying to break the
+													// calculator
+			}
+		}
+	}
+
+	public static int add(int x, int y) { // Four Methods for the program to
+											// access and use to complete
+		return x + y;						// commands
+	}
+
+	public static int multiply(int x, int y) {
+
+		return x * y;
+	}
+
+	public static int subtract(int x, int y) {
+
+		return x - y;
+	}
+
+	public static float divide(int x, int y) {
+
+		return x / y;
+	}
+}
